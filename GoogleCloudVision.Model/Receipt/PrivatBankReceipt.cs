@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoogleCloudVision.Model
+namespace GoogleCloudVision.Model.Receipt
 {
-    public class Class1
+    public class PrivatBankReceipt
     {
     }
 }
