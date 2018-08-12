@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Detector.cs" />
+    <Compile Include="Detectors\IdCardDetector.cs" />
     <Compile Include="Detectors\NalogDetector.cs" />
+    <Compile Include="Detectors\PassportDetector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

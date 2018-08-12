@@ -18,17 +18,17 @@ namespace GoogleCloudVision.Core
         /// <summary>
         /// Label of document
         /// </summary>
-        public string LabelDocument { get; set; }
+        protected string LabelDocument { get; set; }
 
         /// <summary>
         /// Detection Words from API
         /// </summary>
-        public string[] DetectionKeyWords { get; set; }
+        protected string[] DetectionKeyWords { get; set; }
 
         /// <summary>
         /// Key words from text
         /// </summary>
-        public string[] TextKeyWords { get; set; }
+        protected string[] TextKeyWords { get; set; }
 
         /// <summary>
         /// Web detection from google api
@@ -42,12 +42,9 @@ namespace GoogleCloudVision.Core
         /// <returns></returns>
         public virtual bool IsDocumentDetected()
         {
-            int countOfCoincidences = 0;
             string lableDetected = WebDetection.Label.ToUpper();
 
-            foreach (var keyWord in TextKeyWords)
-                if (TextDocument.Contains(keyWord))
-                    countOfCoincidences++;
+            int countOfCoincidences = TextKeyWords.Count(keyWord => TextDocument.Contains(keyWord));
 
             foreach (var entity in WebDetection.WebEntities)
             {
