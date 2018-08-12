@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Google\Detection.cs" />
+    <Compile Include="Google\Entity.cs" />
     <Compile Include="Passport\BiometricPassport.cs" />
     <Compile Include="Passport\IdCardPassport.cs" />
     <Compile Include="Passport\Passport.cs" />
