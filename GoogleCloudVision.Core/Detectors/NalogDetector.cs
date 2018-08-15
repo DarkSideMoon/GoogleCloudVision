@@ -11,7 +11,7 @@ namespace GoogleCloudVision.Core.Detectors
     {
         public NalogDetector()
         {
-            LabelDocument = "ИНН УКРАИНА";
+            LabelDocument = "ІДЕНТИФІКАЦІЙНИЙ КОД";
 
             DetectionKeyWords = new[]
             {

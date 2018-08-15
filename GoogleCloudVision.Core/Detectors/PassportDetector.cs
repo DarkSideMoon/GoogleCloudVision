@@ -13,7 +13,7 @@ namespace GoogleCloudVision.Core.Detectors
     {
         public PassportDetector()
         {
-            LabelDocument = "UKRAINIAN PASSPORT";
+            LabelDocument = "UKRAINE PASSPORT";
 
             DetectionKeyWords = new[]
             {

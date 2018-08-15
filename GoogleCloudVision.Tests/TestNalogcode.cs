@@ -9,27 +9,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GoogleCloudVision.Tests
 {
     [TestClass]
-    public class TestDocuments
+    public class TestNalogcode : BaseTest
     {
-        private string _pathToImage;
-
-        private ImageContext _imageContext;
-
-        private ImageAnnotatorClient _client;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _imageContext = new ImageContext()
-            {
-                // Language to detect
-                LanguageHints = { "ua" }
-            };
-
-            // Instantiates a client
-            _client = ImageAnnotatorClient.Create();
-        }
-
         [TestMethod]
         public void TestNalogcodeDetection()
         {
@@ -54,20 +35,6 @@ namespace GoogleCloudVision.Tests
             Console.WriteLine(nalogDetector.GetDateOfNalogcode());
             Console.WriteLine(nalogDetector.GetNalogcode());
             Console.WriteLine(nalogDetector.GetPersonFullname());
-        }
-
-        private List<Entity> GetWebEntities(WebDetection detection)
-        {
-            var entities = new List<Entity>();
-
-            foreach (var webEntity in detection.WebEntities)
-                entities.Add(new Entity
-                {
-                    KeyWord = webEntity.Description,
-                    Score = webEntity.Score
-                });
-
-            return entities;
         }
     }
 }
