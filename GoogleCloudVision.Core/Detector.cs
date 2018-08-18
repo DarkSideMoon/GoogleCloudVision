@@ -35,6 +35,11 @@ namespace GoogleCloudVision.Core
         /// </summary>
         public Detection WebDetection { get; set; }
 
+        protected Detector(string textDocument)
+        {
+            TextDocument = textDocument;
+        }
+
         /// <summary>
         /// Get the result of detection
         /// Count coincidences by different params

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GoogleCloudVision.Model.TaxCode;
 
 namespace GoogleCloudVision.Core.Detectors
 {
     public class NalogDetector : Detector
     {
-        public NalogDetector()
+        public NalogDetector(string textDocument)
+            : base(textDocument)
         {
             LabelDocument = "ІДЕНТИФІКАЦІЙНИЙ КОД";
 
@@ -34,7 +36,17 @@ namespace GoogleCloudVision.Core.Detectors
             };
         }
 
-        public string GetNalogcode()
+        public TaxIdentificationNumber GetInformation()
+        {
+            return new TaxIdentificationNumber()
+            {
+                FullName = GetPersonFullNameText(),
+                IssueDate = DateTime.Parse(GetDateOfNalogcode()),
+                Number = GetNalogcode(),
+            };
+        }
+
+        private string GetNalogcode()
         {
             var regex = new Regex(@"\d{10}");
             var match = regex.Match(TextDocument);
@@ -42,7 +54,7 @@ namespace GoogleCloudVision.Core.Detectors
             return match.Success ? match.Value : String.Empty;
         }
 
-        public string GetDateOfNalogcode()
+        private string GetDateOfNalogcode()
         {
             var matchList = Regex.Matches(TextDocument,
                 @"([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}");
@@ -55,21 +67,32 @@ namespace GoogleCloudVision.Core.Detectors
             return list.LastOrDefault();
         }
 
-        public string GetPersonFullname()
+        private string GetPersonFullNameText()
         {
-            return GetBetween(TextDocument, "ПОВІДОМЛЯЄ, ЩО", "ОДЕРЖАВ (ЛА)");
+            var fullNameTextPart = TextDocument.Split('\n')[2];
+
+            return fullNameTextPart.Substring(15, fullNameTextPart.Length - 15);
         }
 
-        private string GetBetween(string strSource, string strStart, string strEnd)
-        {
-            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
-            {
-                var start = strSource.IndexOf(strStart, 0, StringComparison.Ordinal) + strStart.Length;
-                var end = strSource.IndexOf(strEnd, start, StringComparison.Ordinal);
-                return strSource.Substring(start, end - start);
-            }
+        ///// <summary>
+        ///// One way to get fullname
+        ///// </summary>
+        ///// <returns></returns>
+        //private string GetPersonFullName()
+        //{
+        //    return GetBetween(TextDocument, "ПОВІДОМЛЯЄ, ЩО", "ОДЕРЖАВ (ЛА)");
+        //}
 
-            return string.Empty;
-        }
+        //private string GetBetween(string strSource, string strStart, string strEnd)
+        //{
+        //    if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+        //    {
+        //        var start = strSource.IndexOf(strStart, 0, StringComparison.Ordinal) + strStart.Length;
+        //        var end = strSource.IndexOf(strEnd, start, StringComparison.Ordinal);
+        //        return strSource.Substring(start, end - start);
+        //    }
+
+        //    return string.Empty;
+        //}
     }
 }

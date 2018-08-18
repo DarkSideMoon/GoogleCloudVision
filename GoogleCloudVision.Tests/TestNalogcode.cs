@@ -20,9 +20,8 @@ namespace GoogleCloudVision.Tests
             var documentText = _client.DetectDocumentText(image, _imageContext);
             var detection = _client.DetectWebInformation(image, _imageContext);
 
-            NalogDetector nalogDetector = new NalogDetector()
+            NalogDetector nalogDetector = new NalogDetector(documentText.Text.ToUpper())
             {
-                TextDocument = documentText.Text.ToUpper(),
                 WebDetection = new Detection()
                 {
                     Label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper(),
@@ -30,11 +29,12 @@ namespace GoogleCloudVision.Tests
                 }
             };
 
-            Assert.IsTrue(nalogDetector.IsDocumentDetected());
+            var information = nalogDetector.GetInformation();
 
-            Console.WriteLine(nalogDetector.GetDateOfNalogcode());
-            Console.WriteLine(nalogDetector.GetNalogcode());
-            Console.WriteLine(nalogDetector.GetPersonFullname());
+            Console.WriteLine(nalogDetector.IsDocumentDetected());
+            Console.WriteLine(information.FullName);
+            Console.WriteLine(information.IssueDate);
+            Console.WriteLine(information.Number);
         }
     }
 }

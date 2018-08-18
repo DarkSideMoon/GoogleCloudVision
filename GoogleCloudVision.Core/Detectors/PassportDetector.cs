@@ -11,7 +11,8 @@ namespace GoogleCloudVision.Core.Detectors
     /// </summary>
     public class PassportDetector : Detector
     {
-        public PassportDetector()
+        public PassportDetector(string textDocument)
+            : base(textDocument)
         {
             LabelDocument = "UKRAINE PASSPORT";
 

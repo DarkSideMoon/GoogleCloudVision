@@ -19,9 +19,8 @@ namespace GoogleCloudVision.Tests
             var documentText = _client.DetectDocumentText(image, _imageContext);
             var detection = _client.DetectWebInformation(image, _imageContext);
 
-            PassportDetector passportDetector = new PassportDetector()
+            PassportDetector passportDetector = new PassportDetector(documentText.Text.ToUpper())
             {
-                TextDocument = documentText.Text.ToUpper(),
                 WebDetection = new Detection()
                 {
                     Label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper(),

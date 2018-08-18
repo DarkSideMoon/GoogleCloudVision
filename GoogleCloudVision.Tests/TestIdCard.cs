@@ -20,9 +20,8 @@ namespace GoogleCloudVision.Tests
             var detection = _client.DetectWebInformation(image, _imageContext);
             var text = _client.DetectText(image, _imageContext);
 
-            IdCardDetector idCardDetector = new IdCardDetector()
+            IdCardDetector idCardDetector = new IdCardDetector(documentText.Text.ToUpper())
             {
-                TextDocument = documentText.Text.ToUpper(),
                 WebDetection = new Detection()
                 {
                     Label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper(),
@@ -30,10 +29,18 @@ namespace GoogleCloudVision.Tests
                 }
             };
 
-            Assert.IsTrue(idCardDetector.IsDocumentDetected());
+            var information = idCardDetector.GetInformation();
 
-            Console.WriteLine(idCardDetector.GetIdCardNumber());
-            Console.WriteLine(idCardDetector.GetIdCardRecordNumber());
+            Assert.IsTrue(idCardDetector.IsDocumentDetected());
+            Console.WriteLine(information.SurnameUkr);
+            Console.WriteLine(information.SurnameEng);
+            Console.WriteLine(information.NameUkr);
+            Console.WriteLine(information.NameEng);
+            Console.WriteLine(information.BirthDate);
+            Console.WriteLine(information.Gender);
+            Console.WriteLine(information.Number);
+            Console.WriteLine(information.RecordNumber);
+            Console.WriteLine(information.ExpireDate);
         }
     }
 }
