@@ -18,7 +18,6 @@ namespace GoogleCloudVision.Tests
 
             var documentText = _client.DetectDocumentText(image, _imageContext);
             var detection = _client.DetectWebInformation(image, _imageContext);
-            var text = _client.DetectText(image, _imageContext);
 
             IdCardDetector idCardDetector = new IdCardDetector(documentText.Text.ToUpper())
             {

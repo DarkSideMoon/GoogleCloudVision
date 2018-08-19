@@ -8,5 +8,16 @@ namespace GoogleCloudVision.Model.Receipt
 {
     public class PrivatBankReceipt
     {
+        public double Sum { get; set; }
+
+        public string ReceiptNumber { get; set; }
+
+        public string BankSender { get; set; }
+
+        public string BankSenderCode { get; set; }
+
+        public string BankReceiver { get; set; }
+            
+        public string BankReceiverCode { get; set; }
     }
 }
