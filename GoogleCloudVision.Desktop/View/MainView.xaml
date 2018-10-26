@@ -4,9 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GoogleCloudVision.Desktop.View"
+        xmlns:VM="clr-namespace:GoogleCloudVision.Desktop.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="300" Width="300">
+        Title="MainView" Height="600" Width="500">
+
+    <Window.DataContext>
+        <VM:MainVM></VM:MainVM>
+    </Window.DataContext>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Image Source="{Binding Image}" 
+                   Height="410" 
+                   Width="430"/>
+            <Button Content="Load" 
+                    Command="{Binding LoadCommand}"
+                    HorizontalAlignment="Center" 
+                    Margin="5"
+                    FontSize="16"
+                    VerticalAlignment="Top" 
+                    Width="75"/>
+            <Button Content="Process" 
+                    Command="{Binding LoadCommand}"
+                    HorizontalAlignment="Center" 
+                    Margin="5"
+                    FontSize="16"
+                    VerticalAlignment="Top" 
+                    Width="75"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" 
+                       Text="{Binding DocumentType}" 
+                       FontSize="16"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" Margin="10"/>
+            <TextBlock TextWrapping="Wrap" 
+                       Text="{Binding DocumentData}" 
+                       FontSize="16"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>
