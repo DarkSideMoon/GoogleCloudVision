@@ -2,3 +2,5 @@ version: 1.0.{build}
 before_build:
 - ps: nuget restore
 configuration: Debug
+platform: Any CPU
+
