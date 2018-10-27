@@ -20,14 +20,24 @@ namespace GoogleCloudVision.Desktop.Infrastructure
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            _execute = execute ?? throw new ArgumentNullException("execute");
+            if (execute == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
             _canExecute = canExecute;
         }
 
         public event EventHandler CanExecuteChanged
         {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
+            add
+            {
+                CommandManager.RequerySuggested += value;
+            }
+
+            remove
+            {
+                CommandManager.RequerySuggested -= value;
+            }
         }
 
         public bool CanExecute(object parameter)
