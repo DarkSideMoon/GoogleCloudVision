@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDetector.cs" />
     <Compile Include="Detector.cs" />
     <Compile Include="Detectors\IdCardDetector.cs" />
     <Compile Include="Detectors\NalogDetector.cs" />

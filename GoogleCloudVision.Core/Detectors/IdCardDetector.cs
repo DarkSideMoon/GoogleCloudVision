@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GoogleCloudVision.Model;
 using GoogleCloudVision.Model.Passport;
 
 namespace GoogleCloudVision.Core.Detectors
 {
-    public class IdCardDetector : Detector
+    public class IdCardDetector : BaseDetector
     {
         private readonly string[] _textParts;
 
@@ -106,6 +107,11 @@ namespace GoogleCloudVision.Core.Detectors
             Match match = regex.Match(TextDocument);
 
             return match.Success ? match.Value : String.Empty;
+        }
+
+        public override IDocument GetDocumentInformation()
+        {
+            throw new NotImplementedException();
         }
     }
 }

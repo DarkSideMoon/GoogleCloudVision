@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoogleCloudVision.Model;
 
 namespace GoogleCloudVision.Core.Detectors
 {
     /// <summary>
     /// Passport old version
     /// </summary>
-    public class PassportDetector : Detector
+    public class PassportDetector : BaseDetector
     {
         public PassportDetector(string textDocument)
             : base(textDocument)
@@ -30,6 +31,11 @@ namespace GoogleCloudVision.Core.Detectors
                 "ПАСПОРТ ГРОМАДЯНИНА УКРАЇНИ",
                 "ПАССПОРТ ГРАЖДАНИНА УКРАИНЫ"
             };
+        }
+
+        public override IDocument GetDocumentInformation()
+        {
+            throw new NotImplementedException();
         }
     }
 }

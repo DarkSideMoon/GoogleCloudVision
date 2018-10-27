@@ -18,7 +18,7 @@ namespace GoogleCloudVision.Desktop.ViewModel
 
         public string DocumentData { get; set; }
 
-        public ImageSource Image { get; set; }
+        public string Image { get; set; }
 
         private RelayCommand _loadCommand;
         private RelayCommand _processCommand;
@@ -67,7 +67,7 @@ namespace GoogleCloudVision.Desktop.ViewModel
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string pathToFile = openFileDialog.FileName;
-                    Image = new BitmapImage(new Uri(pathToFile));
+                    Image = pathToFile;
                     OnPropertyChanged("Image");
                 }
             }
@@ -75,6 +75,13 @@ namespace GoogleCloudVision.Desktop.ViewModel
 
         private void ExecuteProcessCommand(object obj)
         {
+            var image = Google.Cloud.Vision.V1.Image.FromFile(Image);
+
+            var documentText = _client.DetectDocumentText(image, _imageContext);
+            var detection = _client.DetectWebInformation(image, _imageContext);
+
+            var label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper();
+
         }
     }
 }

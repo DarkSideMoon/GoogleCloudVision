@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GoogleCloudVision.Model;
 using GoogleCloudVision.Model.TaxCode;
 
 namespace GoogleCloudVision.Core.Detectors
 {
-    public class NalogDetector : Detector
+    public class NalogDetector : BaseDetector
     {
         public NalogDetector(string textDocument)
             : base(textDocument)
@@ -94,5 +95,10 @@ namespace GoogleCloudVision.Core.Detectors
 
         //    return string.Empty;
         //}
+
+        public override IDocument GetDocumentInformation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

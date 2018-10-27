@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoogleCloudVision.Model;
 using GoogleCloudVision.Model.Receipt;
 
 namespace GoogleCloudVision.Core.Detectors
 {
-    public class PrivatBankReceiptDetector : Detector
+    public class PrivatBankReceiptDetector : BaseDetector
     {
         public string[] TextEntityAnnotations { get; set; }
 
@@ -47,6 +48,11 @@ namespace GoogleCloudVision.Core.Detectors
                 BankReceiver = TextEntityAnnotations[71] + TextEntityAnnotations[72] + TextEntityAnnotations[73],
                 BankReceiverCode = TextEntityAnnotations[85].Substring(1, 6)
             };
+        }
+
+        public override IDocument GetDocumentInformation()
+        {
+            throw new NotImplementedException();
         }
     }
 }
