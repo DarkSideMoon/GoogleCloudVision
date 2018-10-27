@@ -20,5 +20,10 @@ namespace GoogleCloudVision.Model.TaxCode
 
         [JsonProperty("type")]
         public DocumentType Type { get; set; }
+
+        public override string ToString()
+        {
+            return Number + "\n" + FullName + "\n" + IssueDate;
+        }
     }
 }

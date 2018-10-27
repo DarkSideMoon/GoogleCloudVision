@@ -58,13 +58,14 @@ namespace GoogleCloudVision.Core.Detectors
                 BankSender = TextEntityAnnotations[40],
                 BankSenderCode = TextEntityAnnotations[47],
                 BankReceiver = TextEntityAnnotations[71] + TextEntityAnnotations[72] + TextEntityAnnotations[73],
-                BankReceiverCode = TextEntityAnnotations[85].Substring(1, 6)
+                BankReceiverCode = TextEntityAnnotations[85].Substring(1, 6),
+                Type = DocumentType.PrivatBankReceipt
             };
         }
 
         public override IDocument GetDocumentInformation()
         {
-            throw new NotImplementedException();
+            return GetInformation();
         }
     }
 }

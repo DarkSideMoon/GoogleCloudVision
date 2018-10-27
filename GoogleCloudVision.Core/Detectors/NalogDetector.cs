@@ -57,6 +57,7 @@ namespace GoogleCloudVision.Core.Detectors
                 FullName = GetPersonFullNameText(),
                 IssueDate = DateTime.Parse(GetDateOfNalogcode()),
                 Number = GetNalogcode(),
+                Type = DocumentType.Nalogcode
             };
         }
 
@@ -111,7 +112,7 @@ namespace GoogleCloudVision.Core.Detectors
 
         public override IDocument GetDocumentInformation()
         {
-            throw new NotImplementedException();
+            return GetInformation();
         }
     }
 }

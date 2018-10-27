@@ -7,9 +7,17 @@ using Newtonsoft.Json;
 
 namespace GoogleCloudVision.Model.Passport
 {
-    public class Passport
+    public class Passport : IDocument
     {
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("type")]
+        public DocumentType Type { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

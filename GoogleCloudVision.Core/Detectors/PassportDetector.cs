@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GoogleCloudVision.Model;
+using GoogleCloudVision.Model.Passport;
 
 namespace GoogleCloudVision.Core.Detectors
 {
@@ -43,7 +44,11 @@ namespace GoogleCloudVision.Core.Detectors
 
         public override IDocument GetDocumentInformation()
         {
-            throw new NotImplementedException();
+            return new Passport()
+            {
+                Name = "Ukraine passport",
+                Type = DocumentType.Passport
+            };
         }
     }
 }

@@ -38,5 +38,10 @@ namespace GoogleCloudVision.Model.Passport
 
         [JsonProperty("type")]
         public DocumentType Type { get; set; }
+
+        public override string ToString()
+        {
+            return NameUkr + " " + SurnameUkr + "\n" + Gender + "\n" + Number;
+        }
     }
 }

@@ -21,5 +21,10 @@ namespace GoogleCloudVision.Model.Receipt
         public string BankReceiverCode { get; set; }
 
         public DocumentType Type { get; set; }
+
+        public override string ToString()
+        {
+            return Sum + "\n" + ReceiptNumber + "\n" + BankSender + "\n" + BankReceiver;
+        }
     }
 }

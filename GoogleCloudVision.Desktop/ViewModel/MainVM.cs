@@ -80,10 +80,15 @@ namespace GoogleCloudVision.Desktop.ViewModel
 
             var documentText = _client.DetectDocumentText(image, _imageContext);
             var detection = _client.DetectWebInformation(image, _imageContext);
+            var text = _client.DetectText(image, _imageContext);
+
             var label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper();
 
-            Detector mainDetector = new Detector(documentText.Text.ToUpper(), label, detection);
+            Detector mainDetector = new Detector(documentText.Text.ToUpper(), label, detection, text);
             var document = mainDetector.Execute();
+
+            DocumentType = document.Type.ToString();
+            DocumentData = document.ToString();
 
             OnPropertyChanged("DocumentData");
             OnPropertyChanged("DocumentType");

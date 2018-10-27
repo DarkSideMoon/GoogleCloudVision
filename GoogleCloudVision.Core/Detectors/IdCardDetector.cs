@@ -48,22 +48,6 @@ namespace GoogleCloudVision.Core.Detectors
             _textParts = textDocument.Split('\n');
         }
 
-        public IdCardPassport GetInformation()
-        {
-            return new IdCardPassport()
-            {
-                Number = GetIdCardNumber(),
-                RecordNumber = GetIdCardRecordNumber(),
-                SurnameUkr = GetSurnameUkr(),
-                SurnameEng = GetSurnameEng(),
-                NameUkr = GetNameUkr(),
-                NameEng = GetNameEng(),
-                Gender = GetGender(),
-                BirthDate = GetDateOfBirthday(),
-                ExpireDate = GetExpireDate()
-            };
-        }
-
         private DateTime GetExpireDate()
         {
             return DateTime.Parse(_textParts[18]);
@@ -115,9 +99,38 @@ namespace GoogleCloudVision.Core.Detectors
             return match.Success ? match.Value : String.Empty;
         }
 
+        public IdCardPassport GetInformation()
+        {
+            return new IdCardPassport()
+            {
+                Number = GetIdCardNumber(),
+                RecordNumber = GetIdCardRecordNumber(),
+                SurnameUkr = GetSurnameUkr(),
+                SurnameEng = GetSurnameEng(),
+                NameUkr = GetNameUkr(),
+                NameEng = GetNameEng(),
+                Gender = GetGender(),
+                BirthDate = GetDateOfBirthday(),
+                ExpireDate = GetExpireDate(),
+                Type = DocumentType.IdCard
+            };
+        }
+
         public override IDocument GetDocumentInformation()
         {
-            throw new NotImplementedException();
+            return new IdCardPassport()
+            {
+                Number = GetIdCardNumber(),
+                RecordNumber = GetIdCardRecordNumber(),
+                SurnameUkr = GetSurnameUkr(),
+                SurnameEng = GetSurnameEng(),
+                NameUkr = GetNameUkr(),
+                NameEng = GetNameEng(),
+                Gender = GetGender(),
+                BirthDate = GetDateOfBirthday(),
+                ExpireDate = GetExpireDate(),
+                Type = DocumentType.IdCard
+            };
         }
     }
 }

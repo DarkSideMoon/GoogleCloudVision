@@ -21,13 +21,17 @@ namespace GoogleCloudVision.Core
 
         private Detection _detection;
 
+        private IReadOnlyList<EntityAnnotation> _entityAnnotations;
+
         public Detector(string textDocument, 
             string label,
-            WebDetection webDetection)
+            WebDetection webDetection,
+            IReadOnlyList<EntityAnnotation> entityAnnotations)
         {
             _textDocument = textDocument;
             _label = label;
             _webDetection = webDetection;
+            _entityAnnotations = entityAnnotations;
 
             Initialize();
         }
@@ -60,6 +64,7 @@ namespace GoogleCloudVision.Core
                 },
                 new PrivatBankReceiptDetector(_textDocument)
                 {
+                    TextEntityAnnotations = _entityAnnotations.Select(x => x.Description).ToArray(),
                     WebDetection = _detection
                 }
             };

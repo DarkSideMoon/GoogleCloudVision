@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GoogleCloudVision.Desktop.View"
         xmlns:VM="clr-namespace:GoogleCloudVision.Desktop.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="600" Width="500">
+        Title="MainView" Height="700" Width="600">
 
     <Window.DataContext>
         <VM:MainVM></VM:MainVM>
@@ -20,8 +20,8 @@
 
         <StackPanel Grid.Row="0">
             <Image Source="{Binding Image}" 
-                   Height="410" 
-                   Width="430"/>
+                   Height="450" 
+                   Width="480"/>
             <Button Content="Load" 
                     Command="{Binding LoadCommand}"
                     HorizontalAlignment="Center" 
