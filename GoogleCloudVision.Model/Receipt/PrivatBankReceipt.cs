@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoogleCloudVision.Model.Receipt
 {
-    public class PrivatBankReceipt
+    public class PrivatBankReceipt : IDocument
     {
         public double Sum { get; set; }
 
@@ -19,5 +19,7 @@ namespace GoogleCloudVision.Model.Receipt
         public string BankReceiver { get; set; }
             
         public string BankReceiverCode { get; set; }
+
+        public DocumentType Type { get; set; }
     }
 }

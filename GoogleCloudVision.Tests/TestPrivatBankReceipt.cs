@@ -30,9 +30,9 @@ namespace GoogleCloudVision.Tests
                 }
             };
 
-            var information = receiptDetector.GetInformation();
-
             Assert.IsTrue(receiptDetector.IsDocumentDetected());
+
+            var information = receiptDetector.GetInformation();
 
             Console.WriteLine(information.Sum);
             Console.WriteLine(information.ReceiptNumber);

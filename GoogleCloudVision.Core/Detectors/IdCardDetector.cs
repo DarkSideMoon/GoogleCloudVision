@@ -16,7 +16,13 @@ namespace GoogleCloudVision.Core.Detectors
         public IdCardDetector(string textDocument) 
             : base(textDocument)
         {
-            LabelDocument = "IDENTITY CARDS";
+            DefaultCountOfCoincidences = 25;
+
+            LabelDocuments = new[]
+            {
+                "IDENTITY CARDS",
+                "PASSPORT UKRAINE"
+            };
 
             DetectionKeyWords = new[]
             {

@@ -30,7 +30,7 @@
                     VerticalAlignment="Top" 
                     Width="75"/>
             <Button Content="Process" 
-                    Command="{Binding LoadCommand}"
+                    Command="{Binding ProcessCommand}"
                     HorizontalAlignment="Center" 
                     Margin="5"
                     FontSize="16"

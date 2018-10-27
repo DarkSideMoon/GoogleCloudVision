@@ -15,7 +15,15 @@ namespace GoogleCloudVision.Core.Detectors
         public PassportDetector(string textDocument)
             : base(textDocument)
         {
-            LabelDocument = "UKRAINE PASSPORT";
+            // Less number - because the less of coincidences 
+            DefaultCountOfCoincidences = 6;
+
+            LabelDocuments = new[]
+            {
+                "UKRAINE PASSPORT",
+                "ПАСПОРТ ГРАЖДАНИНА УКРАИНЫ",
+                "IDENTITY DOCUMENT"
+            };
 
             DetectionKeyWords = new[]
             {

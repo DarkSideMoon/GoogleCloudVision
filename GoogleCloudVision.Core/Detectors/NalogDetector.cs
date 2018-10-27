@@ -14,14 +14,23 @@ namespace GoogleCloudVision.Core.Detectors
         public NalogDetector(string textDocument)
             : base(textDocument)
         {
-            LabelDocument = "ІДЕНТИФІКАЦІЙНИЙ КОД";
+            DefaultCountOfCoincidences = 20;
+
+            LabelDocuments = new[]
+            {
+                "ІДЕНТИФІКАЦІЙНИЙ КОД",
+                "КАРТКА ПЛАТНИКА ПОДАТКІВ",
+                "ИНН УКРАИНА"
+            };
 
             DetectionKeyWords = new[]
             {
                 "National identification number",
                 "Індивідуальний податковий номер",
                 "Code",
-                "Идентификационный номер налогоплательщика"
+                "Идентификационный номер налогоплательщика",
+                "Tax",
+                "Taxpayer Identification Number"
             };
 
             TextKeyWords = new[]
@@ -33,7 +42,11 @@ namespace GoogleCloudVision.Core.Detectors
                 "ІДЕНТИФІКАЦІЙНИЙ НОМЕР",
                 "УКРАЇНИ",
                 "ОБЛІКОВІЙ КАРТЦІ",
-                "ПОДАТКОВОЮ АДМІНІСТРАЦІЄЮ"
+                "ПОДАТКОВОЮ АДМІНІСТРАЦІЄЮ",
+                "ПОДАТКОВОЇ СЛУЖБИ",
+                "ІДЕНТИФІКАЦІЙНИЙ",
+                "НОМЕР",
+                "ДЕРЖАВНОЮ"
             };
         }
 

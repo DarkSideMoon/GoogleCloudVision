@@ -15,7 +15,14 @@ namespace GoogleCloudVision.Core.Detectors
         public PrivatBankReceiptDetector(string textDocument)
             : base(textDocument)
         {
-            LabelDocument = "БАНКІВСЬКА КВИТАНЦІЯ";
+            DefaultCountOfCoincidences = 25;
+
+            LabelDocuments = new[]
+            {
+                "БАНКІВСЬКА КВИТАНЦІЯ",
+                "КВИТАНЦИЯ ПРИВАТ24",
+                "КВИТАНЦІЯ ПРО ОПЛАТУ ПРИВАТБАНК"
+            };
 
             DetectionKeyWords = new[]
             {
@@ -33,7 +40,12 @@ namespace GoogleCloudVision.Core.Detectors
                 "WWW.PB.UA",
                 "(ПРИВАТБАНК (УКРАИНА)",
                 "ВІДПРАВНИК",
-                "ОДЕРЖУВАЧ"
+                "ОДЕРЖУВАЧ",
+                "КОД КВИТАНЦІЇ",
+                "РАХУНОК",
+                "ПІДПИС",
+                "КОД БАНКУ",
+                "ПРИЗНАЧЕННЯ"
             };
         }
 

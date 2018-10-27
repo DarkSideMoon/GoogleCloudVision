@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace GoogleCloudVision.Model.Passport
 {
-    public class IdCardPassport
+    public class IdCardPassport : IDocument
     {
         [JsonProperty("nameUkr")]
         public string NameUkr { get; set; }
@@ -35,5 +35,8 @@ namespace GoogleCloudVision.Model.Passport
 
         [JsonProperty("recordNumber")]
         public string RecordNumber { get; set; }
+
+        [JsonProperty("type")]
+        public DocumentType Type { get; set; }
     }
 }

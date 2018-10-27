@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace GoogleCloudVision.Model.TaxCode
 {
-    public class TaxIdentificationNumber
+    public class TaxIdentificationNumber : IDocument
     {
         [JsonProperty("number")]
         public string Number { get; set; }
@@ -17,5 +17,8 @@ namespace GoogleCloudVision.Model.TaxCode
 
         [JsonProperty("issueDate")]
         public DateTime IssueDate { get; set; }
+
+        [JsonProperty("type")]
+        public DocumentType Type { get; set; }
     }
 }

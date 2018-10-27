@@ -28,9 +28,9 @@ namespace GoogleCloudVision.Tests
                 }
             };
 
-            var information = idCardDetector.GetInformation();
-
             Assert.IsTrue(idCardDetector.IsDocumentDetected());
+
+            var information = idCardDetector.GetInformation();
             Console.WriteLine(information.SurnameUkr);
             Console.WriteLine(information.SurnameEng);
             Console.WriteLine(information.NameUkr);

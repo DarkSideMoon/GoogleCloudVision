@@ -161,7 +161,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleCloudVision.Core\GoogleCloudVision.Core.csproj">
+      <Project>{EF5BDB03-222C-40F4-A064-8781861C6D1D}</Project>
+      <Name>GoogleCloudVision.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoogleCloudVision.Model\GoogleCloudVision.Model.csproj">
+      <Project>{0E1AD9D7-6B78-4B54-BF2C-087DBCE1EA96}</Project>
+      <Name>GoogleCloudVision.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.1.10.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.10.0\build\net45\Grpc.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

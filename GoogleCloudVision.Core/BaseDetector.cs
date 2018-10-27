@@ -9,19 +9,12 @@ using GoogleCloudVision.Model;
 
 namespace GoogleCloudVision.Core
 {
-
-
     public abstract class BaseDetector
     {
         /// <summary>
-        /// All text of document
-        /// </summary>
-        public string TextDocument { get; set; }
-
-        /// <summary>
         /// Label of document
         /// </summary>
-        protected string LabelDocument { get; set; }
+        protected string[] LabelDocuments { get; set; }
 
         /// <summary>
         /// Detection Words from API
@@ -34,9 +27,21 @@ namespace GoogleCloudVision.Core
         protected string[] TextKeyWords { get; set; }
 
         /// <summary>
+        /// For each document own default count of coincidences
+        /// If the number is greater - it is more precise document definition
+        /// If the number is less - it is less precise document definition
+        /// </summary>
+        protected int DefaultCountOfCoincidences { get; set; }
+
+        /// <summary>
         /// Web detection from google api
         /// </summary>
         public Detection WebDetection { get; set; }
+
+        /// <summary>
+        /// All text of document
+        /// </summary>
+        public string TextDocument { get; set; }
 
         protected BaseDetector(string textDocument)
         {
@@ -54,19 +59,22 @@ namespace GoogleCloudVision.Core
 
             int countOfCoincidences = TextKeyWords.Count(keyWord => TextDocument.Contains(keyWord));
 
+            if (LabelDocuments.Contains(lableDetected))
+                countOfCoincidences += 3;
+
             foreach (var entity in WebDetection.WebEntities)
             {
                 if (DetectionKeyWords.Contains(entity.KeyWord) && entity.Score > 1)
-                    countOfCoincidences += 3;
+                    countOfCoincidences += 4;
 
-                if (DetectionKeyWords.Contains(entity.KeyWord) && entity.Score > 0.8)
+                if (DetectionKeyWords.Contains(entity.KeyWord) && entity.Score > 0.7)
                     countOfCoincidences += 2;
 
                 if (DetectionKeyWords.Contains(entity.KeyWord) && entity.Score > 0.5)
                     countOfCoincidences += 1;
             }
 
-            return countOfCoincidences >= 6 && LabelDocument == lableDetected;
+            return countOfCoincidences >= DefaultCountOfCoincidences;
         }
 
         public abstract IDocument GetDocumentInformation();

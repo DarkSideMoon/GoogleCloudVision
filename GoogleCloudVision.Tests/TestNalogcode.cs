@@ -29,9 +29,9 @@ namespace GoogleCloudVision.Tests
                 }
             };
 
-            var information = nalogDetector.GetInformation();
-
             Console.WriteLine(nalogDetector.IsDocumentDetected());
+
+            var information = nalogDetector.GetInformation();
             Console.WriteLine(information.FullName);
             Console.WriteLine(information.IssueDate);
             Console.WriteLine(information.Number);

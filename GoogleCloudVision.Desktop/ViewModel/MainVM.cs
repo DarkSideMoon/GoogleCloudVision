@@ -7,8 +7,9 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Google.Cloud.Vision.V1;
+using GoogleCloudVision.Core;
 using GoogleCloudVision.Desktop.Infrastructure;
-using ImageSource = System.Windows.Media.ImageSource;
+using GoogleCloudVision.Model.Google;
 
 namespace GoogleCloudVision.Desktop.ViewModel
 {
@@ -79,9 +80,13 @@ namespace GoogleCloudVision.Desktop.ViewModel
 
             var documentText = _client.DetectDocumentText(image, _imageContext);
             var detection = _client.DetectWebInformation(image, _imageContext);
-
             var label = detection.BestGuessLabels.FirstOrDefault().Label.ToUpper();
 
+            Detector mainDetector = new Detector(documentText.Text.ToUpper(), label, detection);
+            var document = mainDetector.Execute();
+
+            OnPropertyChanged("DocumentData");
+            OnPropertyChanged("DocumentType");
         }
     }
 }
