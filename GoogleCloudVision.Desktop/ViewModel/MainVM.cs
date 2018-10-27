@@ -24,8 +24,8 @@ namespace GoogleCloudVision.Desktop.ViewModel
         private RelayCommand _loadCommand;
         private RelayCommand _processCommand;
 
-        private ImageContext _imageContext;
-        private ImageAnnotatorClient _client;
+        private readonly ImageContext _imageContext;
+        private readonly ImageAnnotatorClient _client;
 
         public MainVM()
         {

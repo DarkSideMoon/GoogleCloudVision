@@ -13,15 +13,15 @@ namespace GoogleCloudVision.Core
 {
     public class Detector
     {
-        private string _label;
+        private readonly string _label;
 
-        private string _textDocument;
+        private readonly string _textDocument;
 
-        private WebDetection _webDetection;
+        private readonly WebDetection _webDetection;
 
         private Detection _detection;
 
-        private IReadOnlyList<EntityAnnotation> _entityAnnotations;
+        private readonly IReadOnlyList<EntityAnnotation> _entityAnnotations;
 
         public Detector(string textDocument, 
             string label,
